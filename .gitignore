@@ -1,2 +1,9 @@
-* text=auto
-*.sh text eol=lf
+/.idea
+
+/.docker/angular/data
+/.docker/angular/log
+
+/.docker/backend/data
+/.docker/backend/log
+
+/workdir
