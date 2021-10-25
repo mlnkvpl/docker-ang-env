@@ -1,5 +1,7 @@
 /.idea
 
+/.docker/.env
+
 /.docker/angular/data
 /.docker/angular/log
 
