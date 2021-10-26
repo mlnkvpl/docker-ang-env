@@ -31,6 +31,7 @@ services:
     container_name: "angular-${APP_NAME}"
     environment:
       APP_NAME: "${APP_NAME}"
+      ANGULAR_APP_REPOSITORY: "${APP_REPOSITORY}"
       ANGULAR_HOST: "${ANGULAR_HOST}"
       ANGULAR_INSIDE_PORT: "${ANGULAR_INSIDE_PORT}"
       ANGULAR_OUTSIDE_PORT: "${ANGULAR_OUTSIDE_PORT}"

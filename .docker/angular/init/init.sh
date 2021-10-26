@@ -2,7 +2,7 @@ DIR_NODE_MODULES="/usr/src/app/node_modules";
 
 if [ "$ANGULAR_DO_INSTALL" = "true" ]; then
   if [ -z "$(ls -A /usr/src/app)" ]; then
-      if [ -z "${APP_REPOSITORY}" ]; then
+      if [ -z "${ANGULAR_APP_REPOSITORYY}" ]; then
           ng new "${APP_NAME}" --directory ./
       else
           git clone "${APP_REPOSITORY}" .
