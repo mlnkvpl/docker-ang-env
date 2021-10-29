@@ -1,4 +1,5 @@
 DIR_NODE_MODULES="/usr/src/app/node_modules";
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 if [ "$ANGULAR_DO_INSTALL" = "true" ]; then
   if [ -z "$(ls -A /usr/src/app)" ]; then
@@ -14,4 +15,8 @@ if [ ! -d "$DIR_NODE_MODULES" ]; then
     npm install
 fi
 
-ng serve --host="${ANGULAR_HOST}" --port "${ANGULAR_INSIDE_PORT}"
+if [ ! -z "${ANGULAR_ADDITIONAL_COMMAND}" ]; then
+    eval $ANGULAR_ADDITIONAL_COMMAND;
+fi
+
+ng serve --host="${ANGULAR_HOST}" --port "${ANGULAR_INSIDE_PORT}" --disable-host-check

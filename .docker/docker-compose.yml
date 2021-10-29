@@ -9,7 +9,7 @@ services:
     container_name: "backend-${APP_NAME}"
     restart: unless-stopped
     environment:
-#      SERVER_PORT: "${BACKEND_INSIDE_PORT}"
+      SERVER_PORT: "${BACKEND_INSIDE_PORT}"
       BACKEND_HOST: "${BACKEND_HOST}"
       BACKEND_INSIDE_PORT: "${BACKEND_INSIDE_PORT}"
       BACKEND_OUTSIDE_PORT: "${BACKEND_OUTSIDE_PORT}"
@@ -36,6 +36,7 @@ services:
       ANGULAR_INSIDE_PORT: "${ANGULAR_INSIDE_PORT}"
       ANGULAR_OUTSIDE_PORT: "${ANGULAR_OUTSIDE_PORT}"
       ANGULAR_DO_INSTALL: "${ANGULAR_DO_INSTALL}"
+      ANGULAR_ADDITIONAL_COMMAND: "${ANGULAR_ADDITIONAL_COMMAND}" 
     volumes:
       - ./../workdir/angular:/usr/src/app
     ports:
