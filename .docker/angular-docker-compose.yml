@@ -1,0 +1,32 @@
+version: '3.9'
+#version: '3.8'
+networks:
+  mynetwork:
+    name: "${APP_NAME}-net"
+    driver: bridge
+services:
+  angular:
+    build:
+      context: ./angular
+      args:
+        ANGULAR_OUTSIDE_PORT: "${ANGULAR_OUTSIDE_PORT}"
+        ANGULAR_VERSION: "${ANGULAR_VERSION}"
+    image: "angular:${APP_NAME}"
+    container_name: "angular-${APP_NAME}"
+    environment:
+      APP_NAME: "${APP_NAME}"
+      ANGULAR_APP_REPOSITORY: "${ANGULAR_APP_REPOSITORY}"
+      ANGULAR_HOST: "${ANGULAR_HOST}"
+      ANGULAR_INSIDE_PORT: "${ANGULAR_INSIDE_PORT}"
+      ANGULAR_OUTSIDE_PORT: "${ANGULAR_OUTSIDE_PORT}"
+      ANGULAR_DO_INSTALL: "${ANGULAR_DO_INSTALL}"
+      ANGULAR_NG_NEW_PARAMETERS: "${ANGULAR_NG_NEW_PARAMETERS}"
+      ANGULAR_ADDITIONAL_COMMAND: "${ANGULAR_ADDITIONAL_COMMAND}" 
+    volumes:
+      - ./../workdir/angular:/usr/src/app
+    ports:
+      - "${ANGULAR_OUTSIDE_PORT}:${ANGULAR_INSIDE_PORT}"
+    command:
+      - /tmp/scripts/init.sh
+    networks:
+      - mynetwork

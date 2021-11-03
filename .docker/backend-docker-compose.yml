@@ -1,0 +1,25 @@
+version: '3.9'
+#version: '3.8'
+services:
+  backend:
+    #profiles: ["backend"]
+    build:
+      context: ./backend
+      args:
+        BACKEND_OUTSIDE_PORT: "${BACKEND_OUTSIDE_PORT}"
+    image: "backend:${APP_NAME}"
+    container_name: "backend-${APP_NAME}"
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: "${BACKEND_INSIDE_PORT}"
+      BACKEND_HOST: "${BACKEND_HOST}"
+      BACKEND_INSIDE_PORT: "${BACKEND_INSIDE_PORT}"
+      BACKEND_OUTSIDE_PORT: "${BACKEND_OUTSIDE_PORT}"
+    volumes:
+      - ./../workdir/backend:/usr/src/app
+    ports:
+      - "${BACKEND_OUTSIDE_PORT}:${BACKEND_INSIDE_PORT}"
+    command:
+      - /tmp/scripts/init.sh
+    networks:
+      - mynetwork

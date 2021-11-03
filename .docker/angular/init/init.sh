@@ -4,9 +4,9 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 if [ "$ANGULAR_DO_INSTALL" = "true" ]; then
   if [ -z "$(ls -A /usr/src/app)" ]; then
       if [ -z "${ANGULAR_APP_REPOSITORYY}" ]; then
-          ng new "${APP_NAME}" --directory ./
+          ng new "${APP_NAME}" "${ANGULAR_NG_NEW_PARAMETERS}" --directory ./ 
       else
-          git clone "${APP_REPOSITORY}" .
+          git clone "${ANGULAR_APP_REPOSITORY}" .
       fi
   fi
 fi
