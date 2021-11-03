@@ -1,8 +1,10 @@
-version: '3.9'
-#version: '3.8'
+version: '3.8'
 services:
   backend:
-    #profiles: ["backend"]
+    # this works from version 1.28 of docker-compose
+    # docker-compose --profile backend up
+    #
+    #profiles: ["backend"] 
     build:
       context: ./backend
       args:
@@ -16,7 +18,7 @@ services:
       BACKEND_INSIDE_PORT: "${BACKEND_INSIDE_PORT}"
       BACKEND_OUTSIDE_PORT: "${BACKEND_OUTSIDE_PORT}"
     volumes:
-      - ./../workdir/backend:/usr/src/app
+      - "${BACKEND_VOLUME_PATH}:/usr/src/app"
     ports:
       - "${BACKEND_OUTSIDE_PORT}:${BACKEND_INSIDE_PORT}"
     command:

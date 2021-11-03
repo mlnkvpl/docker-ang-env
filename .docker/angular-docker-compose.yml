@@ -22,7 +22,7 @@ services:
       ANGULAR_NG_NEW_PARAMETERS: "${ANGULAR_NG_NEW_PARAMETERS}"
       ANGULAR_ADDITIONAL_COMMAND: "${ANGULAR_ADDITIONAL_COMMAND}" 
     volumes:
-      - ./../workdir/angular:/usr/src/app
+      - "${ANGULAR_VOLUME_PATH}:/usr/src/app"
     ports:
       - "${ANGULAR_OUTSIDE_PORT}:${ANGULAR_INSIDE_PORT}"
     command:
